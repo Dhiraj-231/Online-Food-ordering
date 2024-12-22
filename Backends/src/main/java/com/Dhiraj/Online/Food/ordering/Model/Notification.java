@@ -1,18 +1,13 @@
 package com.Dhiraj.Online.Food.ordering.Model;
 
 import java.util.Date;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
@@ -23,37 +18,22 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "orders")
-public class Order {
+public class Notification {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "recipient_id")
     private User customer;
 
-    @JsonIgnore
     @ManyToOne
     private Restaurant restaurant;
 
-    private Long totalAmount;
-
-    private String orderStatus;
+    private String message;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    private Date sentAt;
 
-    @ManyToOne
-    private Address deliveryAddress;
-
-    // @JsonIgnore
-    @OneToMany
-    private List<OrderItem> items;
-
-    @OneToOne
-    private Payment payment;
-
-    private int totalItem;
-
-    private int totalPrice;
+    private boolean readStatus;
 }
