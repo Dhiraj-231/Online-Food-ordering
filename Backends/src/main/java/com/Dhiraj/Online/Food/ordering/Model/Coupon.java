@@ -1,30 +1,31 @@
 package com.Dhiraj.Online.Food.ordering.Model;
 
-import java.util.List;
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class OrderItem {
+@Entity
+public class Coupon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    private Food food;
+    private String code;
+    private double discountAmount;
 
-    private int quantity;
-    private Long totalPrice;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date validityPeriod;
 
-    private List<String> ingredients;
+    private String termsAndConditions;
 }

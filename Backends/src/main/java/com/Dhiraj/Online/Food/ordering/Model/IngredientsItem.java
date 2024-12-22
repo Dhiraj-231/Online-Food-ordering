@@ -1,6 +1,6 @@
 package com.Dhiraj.Online.Food.ordering.Model;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,20 +11,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class OrderItem {
+@Entity
+public class IngredientsItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String name;
+
     @ManyToOne
-    private Food food;
+    private IngredientCategory category;
 
-    private int quantity;
-    private Long totalPrice;
+    @JsonIgnore
+    @ManyToOne
+    private Restaurant restaurant;
 
-    private List<String> ingredients;
+    private boolean inStoke = true;
 }

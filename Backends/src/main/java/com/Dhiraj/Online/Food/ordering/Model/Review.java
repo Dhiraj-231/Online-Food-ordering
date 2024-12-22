@@ -1,6 +1,8 @@
 package com.Dhiraj.Online.Food.ordering.Model;
 
-import java.util.List;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,19 +14,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class OrderItem {
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
-    private Food food;
+    private User customer;
 
-    private int quantity;
-    private Long totalPrice;
+    @ManyToOne
+    @JsonIgnore
+    private Restaurant restaurant;
 
-    private List<String> ingredients;
+    private String message;
+
+    private double rating;
+
+    private LocalDateTime createdAt;
 }
