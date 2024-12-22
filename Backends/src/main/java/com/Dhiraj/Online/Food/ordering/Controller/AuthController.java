@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Dhiraj.Online.Food.Request.LoginRequest;
 import com.Dhiraj.Online.Food.ordering.Config.JwtProvider;
 import com.Dhiraj.Online.Food.ordering.Domin.USER_ROLE;
 import com.Dhiraj.Online.Food.ordering.Exceptions.UserException;
@@ -27,6 +26,7 @@ import com.Dhiraj.Online.Food.ordering.Model.Cart;
 import com.Dhiraj.Online.Food.ordering.Model.User;
 import com.Dhiraj.Online.Food.ordering.Repository.CartRepository;
 import com.Dhiraj.Online.Food.ordering.Repository.UserRepository;
+import com.Dhiraj.Online.Food.ordering.Request.LoginRequest;
 import com.Dhiraj.Online.Food.ordering.Response.AuthResponse;
 import com.Dhiraj.Online.Food.ordering.Service.CustomerUserDetails;
 
