@@ -1,4 +1,4 @@
-package com.Dhiraj.Online.Food.Request;
+package com.Dhiraj.Online.Food.ordering.Request;
 
 import lombok.Data;
 
