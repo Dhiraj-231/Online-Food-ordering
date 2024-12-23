@@ -31,6 +31,14 @@ public class UserServiceImp implements userService {
     private final PasswordResetTokenRepository passwordResetTokenRepository;
     private final JavaMailSender javaMailSender;
 
+    /**
+     * Retrieves the user profile based on the provided JWT token.
+     *
+     * @param jwt the JSON Web Token containing user information.
+     * @return the User object associated with the email extracted from the token.
+     * @throws UserException if no user exists with the extracted email.
+     */
+
     @Override
     public User findUserProfileByJwt(String jwt) throws UserException {
         String email = jwtProvider.getEmailFromJwtToken(jwt);

@@ -6,6 +6,7 @@ import java.util.List;
 import com.Dhiraj.Online.Food.ordering.Domin.USER_ROLE;
 import com.Dhiraj.Online.Food.ordering.Dto.RestaurantDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
@@ -29,6 +30,7 @@ public class User {
 
     private String fullName;
     private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     private USER_ROLE role;
