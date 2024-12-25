@@ -25,8 +25,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/admin")
 public class AdminOrderController {
 
-    private OrderService orderService;
-    private UserServiceImp userService;
+    private final OrderService orderService;
+    private final UserServiceImp userService;
 
     @DeleteMapping("/order/{orderId}")
     public ResponseEntity<String> deleteOrder(@PathVariable Long orderId) throws OrderException {

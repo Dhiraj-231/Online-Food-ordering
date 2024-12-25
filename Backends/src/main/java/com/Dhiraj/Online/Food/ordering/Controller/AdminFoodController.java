@@ -2,6 +2,7 @@ package com.Dhiraj.Online.Food.ordering.Controller;
 
 import java.util.List;
 
+import com.Dhiraj.Online.Food.ordering.Service.ServiceImp.FoodServiceImp;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,11 +32,11 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/admin/food")
 @RequiredArgsConstructor
 public class AdminFoodController {
-    private final FoodService foodService;
+    private final FoodServiceImp foodService;
     private final UserServiceImp userService;
     private final RestaurantService restaurantService;
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<Food> createFood(@RequestBody CreateFoodRequest req,
             @RequestHeader("Authorization") String jwt) throws FoodException, UserException, RestaurantException {
         User user = userService.findUserProfileByJwt(jwt);
