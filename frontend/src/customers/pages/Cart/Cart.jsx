@@ -47,7 +47,6 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { cart, auth } = useSelector((store) => store);
   const [openAddressModal, setOpenAddressModal] = useState(false);
-  console.log("cart ", cart);
 
   const handleCloseAddressModal = () => {
     setOpenAddressModal(false);
@@ -74,7 +73,6 @@ const Cart = () => {
         },
       },
     };
-    console.log("data",data)
     if (isValid(cart.cartItems)) {
       dispatch(createOrder(data));
     } else setOpenSnakbar(true);
@@ -86,12 +84,12 @@ const Cart = () => {
       order: {
         restaurantId: cart.cartItems[0].food.restaurant.id,
         deliveryAddress: {
-          fullName: "ashok",
-          streetAddress: "gujrat",
-          city: "gujrat",
-          state: "gujrat",
-          postalCode: "599000",
-          country: "India",
+          fullName: deliveryAddress.fullName,
+          streetAddress: deliveryAddress.streetAddress,
+          city: deliveryAddress.city,
+          state: deliveryAddress.state,
+          postalCode: deliveryAddress.postalCode,
+          country: deliveryAddress.country,
         },
       },
     };
@@ -120,21 +118,21 @@ const Cart = () => {
                   <p>₹{cartTotal(cart.cartItems)}</p>
                 </div>
                 <div className="flex justify-between text-gray-400">
-                <p>Deliver Fee</p>
-                <p>₹21</p>
-              </div>
+                  <p>Deliver Fee</p>
+                  <p>₹21</p>
+                </div>
                 <div className="flex justify-between text-gray-400">
-                <p>Plateform Fee</p>
-                <p>₹5</p>
-              </div>
+                  <p>Plateform Fee</p>
+                  <p>₹5</p>
+                </div>
                 <div className="flex justify-between text-gray-400">
-                <p>GST and Restaurant Charges</p>
-                <p>₹33</p>
-              </div>
+                  <p>GST and Restaurant Charges</p>
+                  <p>₹33</p>
+                </div>
                 <Divider />
                 <div className="flex justify-between text-gray-400">
                   <p>Total Pay</p>
-                  <p>₹{cartTotal(cart.cartItems)+33}</p>
+                  <p>₹{cartTotal(cart.cartItems) + 33}</p>
                 </div>
               </div>
             </div>
@@ -143,69 +141,35 @@ const Cart = () => {
           <section className="lg:w-[70%] flex justify-center px-5 pb-10 lg:pb-0">
             <div className="">
               <h1 className="text-center font-semibold text-2xl py-10">
-              Choose Delivery Address
-            </h1>
-            <div className="flex gap-5 flex-wrap justify-center">
-              {auth.user?.addresses.map((item, index) => (
-                <AddressCard
-                  handleSelectAddress={createOrderUsingSelectedAddress}
-                  item={item}
-                  showButton={true}
-                />
-              ))}
+                Choose Delivery Address
+              </h1>
+              <div className="flex gap-5 flex-wrap justify-center">
+                {auth.user?.addresses.map((item, index) => (
+                  <AddressCard
+                    handleSelectAddress={createOrderUsingSelectedAddress}
+                    item={item}
+                    showButton={true}
+                  />
+                ))}
 
-              <Card className="flex flex-col justify-center items-center p-5  w-64 ">
-                <div className="flex space-x-5">
-                  <AddLocationAltIcon />
-                  <div className="space-y-5">
-                    <p>Add New Address</p>
-                    <Button
-                      onClick={handleOpenAddressModal}
-                      sx={{ padding: ".75rem" }}
-                      fullWidth
-                      variant="contained"
-                    >
-                      Add
-                    </Button>
+                <Card className="flex flex-col justify-center items-center p-5  w-64 ">
+                  <div className="flex space-x-5">
+                    <AddLocationAltIcon />
+                    <div className="space-y-5">
+                      <p>Add New Address</p>
+                      <Button
+                        onClick={handleOpenAddressModal}
+                        sx={{ padding: ".75rem" }}
+                        fullWidth
+                        variant="contained"
+                      >
+                        Add
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </Card>
-            </div>
-            </div>
-            {/* <div className="flex justify-center items-center h-[90vh]">
-              <Card className="billDetails px-5 text-sm w-[20vw] p-10 space-y-5">
-                <p className=" text-xl font-bold text-center">Bill Details</p>
-                <div className="space-y-3">
-                  <div className="flex justify-between text-gray-400">
-                    <p>Item Total</p>
-                    <p>₹{cartTotal(cart.cartItems)}</p>
-                  </div>
-                  <div className="flex justify-between text-gray-400">
-                <p>Deliver Fee</p>
-                <p>₹21</p>
-              </div> 
-                  <div className="flex justify-between text-gray-400">
-                <p>Plateform Fee</p>
-                <p>₹5</p>
-              </div> 
-                  <div className="flex justify-between text-gray-400">
-                <p>GST and Restaurant Charges</p>
-                <p>₹33</p>
+                </Card>
               </div>
-                  <Divider />
-                  <div className="flex justify-between text-gray-400">
-                    <p>Total Pay</p>
-                    <p>₹{cartTotal(cart.cartItems)}</p>
-                  </div>
-                </div>
-                <Button
-                  onClick={createOrderUsingSelectedAddress}
-                  variant="contained"
-                >
-                  Checkout
-                </Button>
-              </Card>
-            </div> */}
+            </div>
           </section>
         </main>
       ) : (
