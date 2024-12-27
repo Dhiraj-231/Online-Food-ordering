@@ -15,4 +15,6 @@ public interface NotificationService {
     public void sendPromotionalNotification(User user, String message);
 
     public List<Notification> findUsersNotification(Long userId);
+
+    public void deleteNotification(Long id, Long notificationId);
 }

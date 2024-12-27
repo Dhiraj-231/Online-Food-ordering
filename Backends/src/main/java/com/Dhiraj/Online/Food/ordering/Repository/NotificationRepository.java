@@ -10,4 +10,6 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
     public List<Notification> findByCustomerId(Long userId);
 
     public List<Notification> findByRestaurantId(Long restaurantId);
+
+    public Notification findByIdAndCustomerId(Long notificationId, Long userId);
 }

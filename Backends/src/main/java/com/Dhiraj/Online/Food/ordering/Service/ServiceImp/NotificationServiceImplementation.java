@@ -22,8 +22,15 @@ public class NotificationServiceImplementation implements NotificationService {
 
     @Override
     public List<Notification> findUsersNotification(Long userId) {
-        // TODO Auto-generated method stub
-        return null;
+        return notificationRepository.findByCustomerId(userId);
+    }
+
+    @Override
+    public void deleteNotification(Long userId, Long notificationId) {
+        Notification notification = notificationRepository.findByIdAndCustomerId(notificationId, userId);
+        if (notification != null) {
+            notificationRepository.delete(notification);
+        }
     }
 
     @Override
@@ -44,7 +51,11 @@ public class NotificationServiceImplementation implements NotificationService {
 
     @Override
     public void sendRestaurantNotification(Restaurant restaurant, String message) {
-        // TODO Auto-generated method stub
+        Notification notification = new Notification();
+        notification.setMessage(message);
+        notification.setRestaurant(restaurant);
+        notification.setSentAt(new Date());
+        notificationRepository.save(notification);
 
     }
 
