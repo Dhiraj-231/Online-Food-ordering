@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,5 +32,13 @@ public class NotificationController {
 
         List<Notification> notifications = notificationSerivce.findUsersNotification(user.getId());
         return new ResponseEntity<List<Notification>>(notifications, HttpStatus.ACCEPTED);
+    }
+
+    @DeleteMapping("/notifications/{notificationId}")
+    public ResponseEntity<String> deleteNotification(@RequestHeader("Authorization") String jwt, Long notificationId)
+            throws UserException {
+        User user = userService.findUserProfileByJwt(jwt);
+        notificationSerivce.deleteNotification(user.getId(), notificationId);
+        return new ResponseEntity<String>("Notification deleted successfully", HttpStatus.ACCEPTED);
     }
 }

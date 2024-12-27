@@ -25,9 +25,8 @@ import jakarta.servlet.http.HttpServletResponse;
 public class JwtTokenValidator extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
+            throws ServletException, IOException, BadCredentialsException {
         String jwt = request.getHeader(JwtConstant.JWT_HEADER);
-
         if (jwt != null) {
             jwt = jwt.substring(7);
 
@@ -40,19 +39,17 @@ public class JwtTokenValidator extends OncePerRequestFilter {
                 String email = String.valueOf(claims.get("email"));
 
                 String authorities = String.valueOf(claims.get("authorities"));
-
-                System.out.println("authorities -------- " + authorities);
-
                 List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
                 Authentication athentication = new UsernamePasswordAuthenticationToken(email, null, auths);
 
                 SecurityContextHolder.getContext().setAuthentication(athentication);
 
-            } catch (Exception e) {
-                throw new BadCredentialsException("invalid token...");
+            } catch (BadCredentialsException e) {
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.getWriter().write("Invalid token");
+                return;
             }
         }
         filterChain.doFilter(request, response);
-
     }
 }
