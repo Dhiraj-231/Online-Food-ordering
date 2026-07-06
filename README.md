@@ -1,142 +1,352 @@
-# 🍔 Online Food Ordering System
+# Online Food Ordering Application
 
-<div align="center">
+A full-stack online food ordering platform with a Spring Boot backend and React.js frontend. Users can browse restaurants, view menus, place orders, and track delivery. Admin users can manage restaurants, menus, and orders.
 
-A **complete, production-ready food ordering platform** with real-time order tracking, payment integration, and responsive design.
+## Table of Contents
+- [Features](#features)
+- [Technologies](#technologies)
+- [System Architecture](#system-architecture)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Database Setup](#database-setup)
+  - [Configuration](#configuration)
+  - [Running the Application](#running-the-application)
+- [API Documentation](#api-documentation)
+- [Project Structure](#project-structure)
+- [User Roles](#user-roles)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
 
-[![MERN Stack](https://img.shields.io/badge/MERN-Stack-brightgreen?style=for-the-badge)](https://www.mongodb.com/)
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18-339933?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-5-47A248?style=for-the-badge&logo=mongodb)](https://www.mongodb.com/)
-[![Redux](https://img.shields.io/badge/Redux-purple?style=for-the-badge&logo=redux)](https://redux.js.org/)
+## Features
 
-</div>
+### Customer Features
+- User registration and authentication
+- Browse restaurants and food menus
+- Search and filter restaurants by category
+- Add items to cart and manage cart
+- Place orders with delivery address
+- Track order status in real-time
+- View order history
+- User profile management
 
----
+### Restaurant Owner Features
+- Register and manage restaurant details
+- Add/edit food items and menus
+- Manage restaurant categories and ingredients
+- View incoming orders
+- Update order status
+- Analytics on orders and sales
 
-## ✨ Features
+### Admin Features
+- Manage all restaurants
+- Manage all users and their roles
+- Monitor orders and transactions
+- Manage food categories and ingredients
+- System-wide analytics and reporting
 
-✅ **User Authentication** - Secure login/signup with JWT tokens  
-✅ **Food Catalog** - Browse restaurants and menu items with filters  
-✅ **Shopping Cart** - Add/remove items, manage quantities  
-✅ **Real-time Order Tracking** - Track order status in real-time  
-✅ **Payment Integration** - Secure payment processing with Stripe  
-✅ **Order Management** - View order history and details  
-✅ **Responsive Design** - Works seamlessly on desktop and mobile  
-✅ **Admin Dashboard** - Restaurant management panel  
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-- **React 18** - UI library with hooks
-- **Redux** - State management
-- **Axios** - HTTP client
-- **Tailwind CSS / SCSS** - Responsive styling
-- **React Router** - Client-side routing
+## Technologies
 
 ### Backend
-- **Node.js** - Runtime environment
-- **Express.js** - Web framework
-- **MongoDB** - NoSQL database
-- **Mongoose** - ODM for MongoDB
-- **JWT** - Authentication
+- **Framework:** Spring Boot 3.x
+- **Java Version:** 21
+- **Database:** MySQL 8.0+
+- **ORM:** JPA/Hibernate
+- **Security:** Spring Security with JWT
+- **Build Tool:** Maven 3.8+
+- **Additional:** Lombok, Stripe integration
 
-### Payment & Integrations
-- **Stripe API** - Payment processing
-- **Socket.io** - Real-time updates
+### Frontend
+- **Library:** React.js 18.2+
+- **State Management:** Redux with Redux Thunk
+- **Routing:** React Router v6
+- **HTTP Client:** Axios
+- **UI Framework:** Material-UI (MUI)
+- **Styling:** Styled Components, Tailwind CSS
+- **Build Tool:** npm/yarn
 
----
+## System Architecture
 
-## 🚀 Getting Started
+```
+┌─────────────────────────────────────────┐
+│     React Frontend (Port 3002)          │
+│  - User Interface & Components          │
+│  - Redux State Management               │
+│  - Authentication Flow                  │
+└──────────────────┬──────────────────────┘
+                   │ HTTP/REST
+                   ▼
+┌─────────────────────────────────────────┐
+│   Spring Boot Backend (Port 8081)       │
+│  - REST API Controllers                 │
+│  - Business Logic & Services            │
+│  - JWT Authentication                   │
+│  - Database Operations                  │
+└──────────────────┬──────────────────────┘
+                   │ JDBC
+                   ▼
+┌─────────────────────────────────────────┐
+│      MySQL Database (Port 3306)         │
+│  - User Data                            │
+│  - Restaurant & Menu Information        │
+│  - Orders & Transactions                │
+└─────────────────────────────────────────┘
+```
+
+## Getting Started
 
 ### Prerequisites
-- Node.js (v14+)
-- MongoDB
-- Stripe account
+
+- **Java Development Kit (JDK):** Version 21 or higher
+  - Download from [oracle.com](https://www.oracle.com/java/technologies/downloads/#java21)
+  - Verify: `java -version`
+
+- **Node.js & npm:** Version 14 or higher
+  - Download from [nodejs.org](https://nodejs.org/)
+  - Verify: `node -v` and `npm -v`
+
+- **MySQL Server:** Version 8.0 or higher
+  - Download from [mysql.com](https://www.mysql.com/downloads/)
+  - Verify: `mysql -u root -p -e "SELECT VERSION();"`
+
+- **Git:** Version control
+  - Download from [git-scm.com](https://git-scm.com/)
 
 ### Installation
 
-```bash
-# Clone the repository
-git clone https://github.com/Dhiraj-231/Online-Food-ordering.git
-cd Online-Food-ordering
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Dhiraj-231/Online-Food-ordering.git
+   cd Online-Food-ordering
+   ```
 
-# Install dependencies
-npm install
+2. **Install backend dependencies:**
+   ```bash
+   cd Backends
+   mvn clean install
+   ```
 
-# Create .env file
-# Add your MongoDB connection string and Stripe keys
+3. **Install frontend dependencies:**
+   ```bash
+   cd ../frontend
+   npm install
+   ```
 
-# Start the application
-npm start
+### Database Setup
+
+1. **Create MySQL database:**
+   ```bash
+   mysql -u root -p
+   ```
+
+2. **In MySQL console:**
+   ```sql
+   CREATE DATABASE food_ordering;
+   USE food_ordering;
+   ```
+
+3. The application will automatically create tables on first run via Hibernate (ddl-auto=update)
+
+### Configuration
+
+The application uses environment-based configuration files:
+
+**Backend Configuration** (`Backends/src/main/resources/application.properties`):
+```properties
+server.port=8081
+spring.datasource.url=jdbc:mysql://localhost:3306/food_ordering
+spring.datasource.username=root
+spring.datasource.password=
+spring.jpa.hibernate.ddl-auto=update
+stripe.secret.key=sk_test_your_key_here
 ```
 
----
+**Update these values for your environment:**
+- Database credentials
+- Stripe API key for payment processing
+- Email SMTP configuration if needed
 
-## 📁 Project Structure
+### Running the Application
+
+#### Option 1: Run Backend and Frontend Separately
+
+**Terminal 1 - Start Backend:**
+```bash
+cd Backends
+mvn spring-boot:run
+# Backend will start on http://localhost:8081
+```
+
+**Terminal 2 - Start Frontend:**
+```bash
+cd frontend
+npm start
+# Frontend will automatically open on http://localhost:3002
+# (or next available port if 3002 is in use)
+```
+
+#### Option 2: Build and Deploy
+
+**Backend:**
+```bash
+cd Backends
+mvn clean package
+java -jar target/Online-Food-ordering-0.0.1-SNAPSHOT.jar
+```
+
+**Frontend:**
+```bash
+cd frontend
+npm run build
+# Output in frontend/build directory
+```
+
+### Accessing the Application
+
+- **Frontend UI:** http://localhost:3002
+- **Backend API:** http://localhost:8081/api
+- **API Swagger Docs:** http://localhost:8081/swagger-ui.html (if enabled)
+
+## API Documentation
+
+### Authentication Endpoints
+- `POST /auth/signup` - Register new user
+- `POST /auth/signin` - Login user
+- `POST /auth/logout` - Logout user
+
+### Restaurant Endpoints
+- `GET /api/restaurants` - List all restaurants
+- `GET /api/restaurants/{id}` - Get restaurant details
+- `GET /api/restaurants/{id}/menu` - Get restaurant menu
+
+### Order Endpoints
+- `POST /api/orders` - Place new order
+- `GET /api/orders` - Get user's orders
+- `GET /api/orders/{id}` - Get order details
+- `PUT /api/orders/{id}/status` - Update order status (admin only)
+
+### User Endpoints
+- `GET /api/users/profile` - Get current user profile
+- `PUT /api/users/profile` - Update user profile
+- `GET /api/users` - List all users (admin only)
+
+For complete API documentation, refer to controller classes in `Backends/src/main/java/com/Dhiraj/Online/Food/ordering/Controller/`
+
+## Project Structure
 
 ```
 Online-Food-ordering/
-├── client/                 # React frontend
+├── Backends/                          # Spring Boot Backend
+│   ├── src/main/
+│   │   ├── java/com/Dhiraj/Online/Food/ordering/
+│   │   │   ├── Controller/           # REST Controllers
+│   │   │   ├── Service/              # Business Logic
+│   │   │   ├── Repository/           # Data Access Layer
+│   │   │   ├── Model/                # Entity Classes
+│   │   │   ├── Domin/                # Enums (USER_ROLE, OrderStatus)
+│   │   │   ├── Config/               # Configuration Classes
+│   │   │   └── Exception/            # Custom Exceptions
+│   │   └── resources/
+│   │       └── application.properties # Configuration
+│   └── pom.xml                        # Maven Dependencies
+│
+├── frontend/                          # React Frontend
 │   ├── src/
-│   │   ├── components/     # React components
-│   │   ├── pages/          # Page components
-│   │   ├── redux/          # Redux slices
-│   │   └── App.js
-├── server/                 # Express backend
-│   ├── models/             # MongoDB schemas
-│   ├── routes/             # API endpoints
-│   ├── controllers/        # Request handlers
-│   └── server.js
-└── README.md
+│   │   ├── components/               # React Components
+│   │   ├── pages/                    # Page Components
+│   │   ├── redux/                    # Redux Store & Slices
+│   │   ├── utils/                    # Utility Functions
+│   │   ├── styles/                   # CSS/Styled Components
+│   │   └── App.js                    # Main App Component
+│   └── package.json                  # NPM Dependencies
+│
+├── README.md                          # This file
+└── LICENSE                            # MIT License
 ```
 
+## User Roles
+
+The application supports three main user roles:
+
+| Role | Permissions |
+|------|------------|
+| **ROLE_CUSTOMER** | Browse restaurants, place orders, view history, manage profile |
+| **ROLE_RESTAURANT_OWNER** | Manage restaurant, update menus, view/update orders |
+| **ROLE_RESTAURANT_MANAGER** | Manage restaurant operations, update orders |
+| **ROLE_ADMIN** | Full system access, manage users, restaurants, and orders |
+
+## Troubleshooting
+
+### Common Issues
+
+**Issue: "Database connection refused"**
+```
+Solution: Ensure MySQL is running and credentials are correct in application.properties
+- Check MySQL service: mysql -u root -p
+- Verify database exists: SHOW DATABASES;
+```
+
+**Issue: "Port 3002 already in use"**
+```
+Solution: Frontend will automatically use next available port (3003, 3004, etc.)
+Or kill the process using the port:
+- Windows: netstat -ano | findstr :3002
+- Linux/Mac: lsof -i :3002
+```
+
+**Issue: "Maven compilation errors"**
+```
+Solution: Clear and rebuild
+- cd Backends
+- mvn clean install
+- mvn spring-boot:run
+```
+
+**Issue: "npm packages not installing"**
+```
+Solution: Clear npm cache and reinstall
+- npm cache clean --force
+- rm -rf node_modules package-lock.json
+- npm install
+```
+
+**Issue: "JWT Token expired"**
+```
+Solution: Re-login or check JwtConstant.java for token expiration time
+Adjust if needed in backend configuration
+```
+
+### Enable Debug Logging
+
+To see detailed logs, update `application.properties`:
+```properties
+logging.level.root=INFO
+logging.level.com.Dhiraj.Online.Food.ordering=DEBUG
+logging.level.org.springframework.security=DEBUG
+```
+
+## Contributing
+
+Contributions are welcome! Please follow these guidelines:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### Code Standards
+- Follow Java/JavaScript naming conventions
+- Write meaningful commit messages
+- Add comments for complex logic
+- Test your changes before submitting PR
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
 ---
 
-## 📚 API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/restaurants` | Get all restaurants |
-| GET | `/api/menu/:restaurantId` | Get restaurant menu |
-| POST | `/api/orders` | Create new order |
-| GET | `/api/orders/:orderId` | Get order details |
-| PATCH | `/api/orders/:orderId` | Update order status |
-| POST | `/api/payments` | Process payment |
-
----
-
-## 🎯 Future Enhancements
-
-- [ ] Push notifications for order updates
-- [ ] Rating and review system
-- [ ] Coupon/discount codes
-- [ ] Multiple payment methods
-- [ ] Restaurant analytics dashboard
-- [ ] Advanced search and filtering
-
----
-
-## 👨‍💻 Author
-
-**Dhiraj Ray**  
-- GitHub: [@Dhiraj-231](https://github.com/Dhiraj-231)
-- Email: scoperaise@gmail.com
-
----
-
-## 📄 License
-
-This project is open source and available under the MIT License.
-
----
-
-<div align="center">
-
-**⭐ If you found this helpful, please give it a star!**
-
-Made with ❤️ by Dhiraj Ray
-
-</div>
+**Last Updated:** July 2026
+**Maintainer:** Dhiraj-231
