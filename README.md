@@ -1,79 +1,142 @@
-# Online Food Ordering Application
+# 🍔 Online Food Ordering System
 
-This is an online food ordering application with a Spring Boot backend and a React.js frontend. The application allows users to browse restaurant menus, place orders, and manage their accounts.
+<div align="center">
 
-## Table of Contents
-- [Features](#features)
-- [Technologies](#technologies)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Backend Setup](#backend-setup)
-  - [Frontend Setup](#frontend-setup)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+A **complete, production-ready food ordering platform** with real-time order tracking, payment integration, and responsive design.
 
-## Features
-- User authentication and authorization
-- Browse restaurant menus
-- Place and track orders
-- View order history
-- Admin panel for managing menus and orders
+[![MERN Stack](https://img.shields.io/badge/MERN-Stack-brightgreen?style=for-the-badge)](https://www.mongodb.com/)
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18-339933?style=for-the-badge&logo=nodedotjs)](https://nodejs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-5-47A248?style=for-the-badge&logo=mongodb)](https://www.mongodb.com/)
+[![Redux](https://img.shields.io/badge/Redux-purple?style=for-the-badge&logo=redux)](https://redux.js.org/)
 
-## Technologies
-- **Backend:** Spring Boot, Spring Security, JPA/Hibernate, MySQL
-- **Frontend:** React.js, Redux, React Router, Axios
-- **Build Tools:** Maven (Backend), npm/yarn (Frontend)
+</div>
 
-## Getting Started
+---
+
+## ✨ Features
+
+✅ **User Authentication** - Secure login/signup with JWT tokens  
+✅ **Food Catalog** - Browse restaurants and menu items with filters  
+✅ **Shopping Cart** - Add/remove items, manage quantities  
+✅ **Real-time Order Tracking** - Track order status in real-time  
+✅ **Payment Integration** - Secure payment processing with Stripe  
+✅ **Order Management** - View order history and details  
+✅ **Responsive Design** - Works seamlessly on desktop and mobile  
+✅ **Admin Dashboard** - Restaurant management panel  
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 18** - UI library with hooks
+- **Redux** - State management
+- **Axios** - HTTP client
+- **Tailwind CSS / SCSS** - Responsive styling
+- **React Router** - Client-side routing
+
+### Backend
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **MongoDB** - NoSQL database
+- **Mongoose** - ODM for MongoDB
+- **JWT** - Authentication
+
+### Payment & Integrations
+- **Stripe API** - Payment processing
+- **Socket.io** - Real-time updates
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Java 11 or higher
-- Node.js (v14 or higher) and npm (v6 or higher)
-- MySQL database
+- Node.js (v14+)
+- MongoDB
+- Stripe account
 
-### Backend Setup
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/Dhiraj-231/Online-Food-ordering.git
-    cd Online-Food-ordering/backend
-    ```
+### Installation
 
-2. Update the `application.properties` file with your MySQL database credentials:
-    ```properties
-    spring.datasource.url=jdbc:mysql://localhost:3306/yourdb
-    spring.datasource.username=yourusername
-    spring.datasource.password=yourpassword
-    ```
+```bash
+# Clone the repository
+git clone https://github.com/Dhiraj-231/Online-Food-ordering.git
+cd Online-Food-ordering
 
-3. Build and run the backend:
-    ```sh
-    ./mvnw clean install
-    ./mvnw spring-boot:run
-    ```
+# Install dependencies
+npm install
 
-### Frontend Setup
-1. Navigate to the frontend directory:
-    ```sh
-    cd ../frontend
-    ```
+# Create .env file
+# Add your MongoDB connection string and Stripe keys
 
-2. Install the dependencies:
-    ```sh
-    npm install
-    ```
+# Start the application
+npm start
+```
 
-3. Start the development server:
-    ```sh
-    npm start
-    ```
+---
 
-## Usage
-1. Open your browser and navigate to `http://localhost:3000` to access the frontend.
-2. The backend API will be available at `http://localhost:8080`.
+## 📁 Project Structure
 
-## Contributing
-Contributions are welcome! Please fork the repository and create a pull request with your changes. Ensure that your code follows the project's coding standards and includes appropriate tests.
+```
+Online-Food-ordering/
+├── client/                 # React frontend
+│   ├── src/
+│   │   ├── components/     # React components
+│   │   ├── pages/          # Page components
+│   │   ├── redux/          # Redux slices
+│   │   └── App.js
+├── server/                 # Express backend
+│   ├── models/             # MongoDB schemas
+│   ├── routes/             # API endpoints
+│   ├── controllers/        # Request handlers
+│   └── server.js
+└── README.md
+```
 
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+---
+
+## 📚 API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/restaurants` | Get all restaurants |
+| GET | `/api/menu/:restaurantId` | Get restaurant menu |
+| POST | `/api/orders` | Create new order |
+| GET | `/api/orders/:orderId` | Get order details |
+| PATCH | `/api/orders/:orderId` | Update order status |
+| POST | `/api/payments` | Process payment |
+
+---
+
+## 🎯 Future Enhancements
+
+- [ ] Push notifications for order updates
+- [ ] Rating and review system
+- [ ] Coupon/discount codes
+- [ ] Multiple payment methods
+- [ ] Restaurant analytics dashboard
+- [ ] Advanced search and filtering
+
+---
+
+## 👨‍💻 Author
+
+**Dhiraj Ray**  
+- GitHub: [@Dhiraj-231](https://github.com/Dhiraj-231)
+- Email: scoperaise@gmail.com
+
+---
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+---
+
+<div align="center">
+
+**⭐ If you found this helpful, please give it a star!**
+
+Made with ❤️ by Dhiraj Ray
+
+</div>
