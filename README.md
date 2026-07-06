@@ -48,23 +48,43 @@ A full-stack online food ordering platform with a Spring Boot backend and React.
 
 ## Technologies
 
-### Backend
-- **Framework:** Spring Boot 3.x
-- **Java Version:** 21
-- **Database:** MySQL 8.0+
-- **ORM:** JPA/Hibernate
-- **Security:** Spring Security with JWT
-- **Build Tool:** Maven 3.8+
-- **Additional:** Lombok, Stripe integration
+### Backend Stack
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| ☕ **Java** | 21 | Programming Language |
+| 🍃 **Spring Boot** | 3.x | Backend Framework |
+| 🗄️ **MySQL** | 8.0+ | Database |
+| 🔄 **JPA/Hibernate** | Latest | ORM Framework |
+| 🔐 **Spring Security** | Latest | Authentication & JWT |
+| 🔨 **Maven** | 3.8+ | Build Tool |
+| 💳 **Stripe API** | Latest | Payment Processing |
+| 📦 **Lombok** | Latest | Code Generation |
 
-### Frontend
-- **Library:** React.js 18.2+
-- **State Management:** Redux with Redux Thunk
-- **Routing:** React Router v6
-- **HTTP Client:** Axios
-- **UI Framework:** Material-UI (MUI)
-- **Styling:** Styled Components, Tailwind CSS
-- **Build Tool:** npm/yarn
+### Frontend Stack
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| ⚛️ **React.js** | 18.2+ | UI Library |
+| 📦 **Redux** | Latest | State Management |
+| 🛣️ **React Router** | v6 | Routing |
+| 🌐 **Axios** | Latest | HTTP Client |
+| 🎨 **Material-UI** | 5.x+ | UI Components |
+| 💄 **Tailwind CSS** | 3.x+ | Styling Framework |
+| 🎭 **Styled Components** | Latest | CSS-in-JS |
+| 📦 **npm** | Latest | Package Manager |
+
+### Full Tech Stack Overview
+
+```
+🖥️ Frontend Layer              🔧 Backend Layer           💾 Data Layer
+┌────────────────────┐        ┌──────────────────┐       ┌──────────────┐
+│ ⚛️  React 18.2     │        │ 🍃 Spring Boot   │       │ 🗄️  MySQL    │
+│ 📦 Redux           │   -->  │ ☕ Java 21       │  -->  │ 📊 JPA/HB    │
+│ 🎨 Tailwind CSS    │        │ 🔐 Spring Sec    │       │              │
+│ 🎭 Styled Comp     │        │ 💳 Stripe API    │       │              │
+│ 📦 npm/Node.js     │        │ 🔨 Maven         │       │              │
+└────────────────────┘        └──────────────────┘       └──────────────┘
+      Port 3002                  Port 8081               Port 3306
+```
 
 ## System Architecture
 
